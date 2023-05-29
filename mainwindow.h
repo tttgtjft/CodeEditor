@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <CodeEditor.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +17,5 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    CodeEditor* m_codeEditor;
 };
 #endif // MAINWINDOW_H
