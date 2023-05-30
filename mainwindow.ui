@@ -31,7 +31,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QListView" name="listView">
+        <widget class="FileSystem" name="listView">
          <property name="minimumSize">
           <size>
            <width>256</width>
@@ -76,14 +76,26 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_file"/>
+    <addaction name="action_newFile"/>
+    <addaction name="action_saveFile"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionNew_file">
+  <action name="action_newFile">
    <property name="text">
     <string>New file...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_saveFile">
+   <property name="text">
+    <string>Save file...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>
@@ -92,6 +104,11 @@
    <class>CodeEditor</class>
    <extends>QPlainTextEdit</extends>
    <header>CodeEditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FileSystem</class>
+   <extends>QListView</extends>
+   <header>FileSystem.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

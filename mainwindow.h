@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_mainwindow.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -15,7 +17,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void insert_plainText(QString text);
+
 private:
     Ui::MainWindow *ui;
 };
+
 #endif // MAINWINDOW_H

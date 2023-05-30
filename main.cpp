@@ -6,9 +6,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QPalette darkPalette;
 
-    // Настраиваем палитру для цветовых ролей элементов интерфейса
+    QPalette darkPalette;
     darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));
     darkPalette.setColor(QPalette::WindowText, Qt::white);
     darkPalette.setColor(QPalette::Base, QColor(25, 25, 25));

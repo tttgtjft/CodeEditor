@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     CodeEditor.cpp \
+    FileSystem.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     CodeEditor.h \
+    FileSystem.h \
     mainwindow.h
 
 FORMS += \
