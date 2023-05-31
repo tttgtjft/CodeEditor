@@ -2,8 +2,6 @@
 #define CODEEDITOR_H
 
 #include <QPlainTextEdit>
-#include <QObject>
-#include <QWidget>
 
 class LineNumberArea;
 
@@ -24,9 +22,11 @@ private slots:
     void updateLineNumberAreaWidth(int newBlockCount);
     void highlightCurrentLine();
     void updateLineNumberArea(const QRect &, int);
+    void change_lineColor();
 
 private:
     QWidget *lineNumberArea;
+    bool m_is_lineColor_changed = false;
 };
 
 class LineNumberArea : public QWidget

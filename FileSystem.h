@@ -1,8 +1,6 @@
 #ifndef FILESYSTEM_H
 #define FILESYSTEM_H
 
-#include <QObject>
-#include <QWidget>
 #include <QDir>
 #include <QFileSystemModel>
 #include <QListView>
@@ -15,7 +13,7 @@ public:
     FileSystem(QWidget* parent = nullptr);
 
 private slots:
-    void on_listView_doubleClicked(const QModelIndex &index);
+    void on_listView_clicked(const QModelIndex &index);
 
 signals:
     void insert_text(QString text);

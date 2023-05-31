@@ -18,7 +18,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void insert_plainText(QString text);
+    void insert_codeEditor(QString text);
+    bool isChecked_themeChanger();
 
 private:
     Ui::MainWindow *ui;

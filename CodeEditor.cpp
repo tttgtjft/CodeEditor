@@ -1,6 +1,7 @@
 #include "CodeEditor.h"
 
 #include <QtGui>
+#include <QDebug>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
@@ -9,6 +10,12 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
     connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
+
+    QFont font("Courier");
+    font.setStyleHint(QFont::Monospace);
+    font.setPointSize(6);
+    this->setFont(font);
+    this->setTabStopDistance(QFontMetricsF(font).horizontalAdvance(' ') * 4);
 
     updateLineNumberAreaWidth(0);
     highlightCurrentLine();
@@ -29,9 +36,15 @@ int CodeEditor::lineNumberAreaWidth()
     return space;
 }
 
-void CodeEditor::updateLineNumberAreaWidth(int /* newBlockCount */)
+void CodeEditor::updateLineNumberAreaWidth(int)
 {
     setViewportMargins(lineNumberAreaWidth(), 0, 0, 0);
+}
+
+void CodeEditor::change_lineColor()
+{
+    m_is_lineColor_changed = !m_is_lineColor_changed;
+    highlightCurrentLine();
 }
 
 void CodeEditor::updateLineNumberArea(const QRect &rect, int dy)
@@ -61,8 +74,11 @@ void CodeEditor::highlightCurrentLine()
     {
         QTextEdit::ExtraSelection selection;
 
-        QColor lineColor = QColor(50, 50, 50, 180);
-
+        QColor lineColor = QColor(224, 224, 224, 180);;
+        if (m_is_lineColor_changed == true)
+        {
+            lineColor = QColor(50, 50, 50, 180);
+        }
         selection.format.setBackground(lineColor);
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();

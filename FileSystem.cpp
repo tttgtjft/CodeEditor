@@ -17,10 +17,11 @@ FileSystem::FileSystem(QWidget* parent) : QListView(parent)
 
     this->setModel(m_model);
     this->setRootIndex(m_model->index(QDir::currentPath() + "/Project"));
-    connect(this, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(on_listView_doubleClicked(QModelIndex)));
+
+    connect(this, SIGNAL(clicked(QModelIndex)), this, SLOT(on_listView_clicked(QModelIndex)));
 }
 
-void FileSystem::on_listView_doubleClicked(const QModelIndex &index)
+void FileSystem::on_listView_clicked(const QModelIndex &index)
 {
     QFileInfo fileInfo = m_model->fileInfo(index);
     QFile file(fileInfo.absoluteFilePath());
@@ -31,5 +32,8 @@ void FileSystem::on_listView_doubleClicked(const QModelIndex &index)
 
     QString file_text = file.readAll();
     emit insert_text(file_text);
+
     file.close();
 }
+
+
