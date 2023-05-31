@@ -108,7 +108,14 @@
     <addaction name="action_newFile"/>
     <addaction name="action_saveFile"/>
    </widget>
+   <widget class="QMenu" name="menuCompile">
+    <property name="title">
+     <string>Compile</string>
+    </property>
+    <addaction name="action_runFile"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuCompile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_newFile">
@@ -125,6 +132,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_runFile">
+   <property name="text">
+    <string>Run file...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>

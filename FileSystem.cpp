@@ -1,4 +1,5 @@
 #include "FileSystem.h"
+#include "Compiler.h"
 
 #include <QCoreApplication>
 #include <QInputDialog>
@@ -40,14 +41,14 @@ void FileSystem::on_listView_clicked(const QModelIndex &index)
 
 void FileSystem::on_newFile_clicked()
 {
-    QInputDialog* inputDialog = new QInputDialog();
-    inputDialog->setInputMode(QInputDialog::TextInput);
-    inputDialog->setWindowTitle("New File");
-    inputDialog->setLabelText("Name of the new file:");
-    inputDialog->setOkButtonText("Add");
-    inputDialog->exec();
+    QInputDialog* input_dialog = new QInputDialog();
+    input_dialog->setInputMode(QInputDialog::TextInput);
+    input_dialog->setWindowTitle("New File");
+    input_dialog->setLabelText("Name of the new file:");
+    input_dialog->setOkButtonText("Add");
+    input_dialog->exec();
 
-    QString text = inputDialog->textValue();
+    QString text = input_dialog->textValue();
     QFile file(QDir::currentPath() + "/Project/" + text);
     if (file.exists() && !text.isEmpty())
     {
@@ -71,7 +72,11 @@ void FileSystem::on_saveFile_clicked()
 
     QTextStream out(&file);
     out << emit get_text();
-    qDebug() << emit get_text();
 
     file.close();
+}
+
+void FileSystem::on_runFile_clicked()
+{
+    Compiler::compile(m_fileInfo);
 }

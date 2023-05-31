@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "FileSystem.h"
+#include <QProcess>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -12,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(ui->themeChanger, SIGNAL(is_checked()), ui->codeEditor, SLOT(change_lineColor()));
     connect(ui->action_newFile, SIGNAL(triggered()), ui->fileSystem, SLOT(on_newFile_clicked()));
     connect(ui->action_saveFile, SIGNAL(triggered()), ui->fileSystem, SLOT(on_saveFile_clicked()));
+    connect(ui->action_runFile, SIGNAL(triggered()), ui->fileSystem, SLOT(on_runFile_clicked()));
 }
 
 MainWindow::~MainWindow()

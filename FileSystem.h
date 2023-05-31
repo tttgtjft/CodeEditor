@@ -16,6 +16,7 @@ private slots:
     void on_listView_clicked(const QModelIndex &index);
     void on_newFile_clicked();
     void on_saveFile_clicked();
+    void on_runFile_clicked();
 
 signals:
     void insert_text(QString text);

@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     CodeEditor.cpp \
+    Compiler.cpp \
     FileSystem.cpp \
     ThemeChanger.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     CodeEditor.h \
+    Compiler.h \
     FileSystem.h \
     ThemeChanger.h \
     mainwindow.h
