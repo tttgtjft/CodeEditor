@@ -20,6 +20,7 @@ public:
 private slots:
     void insert_codeEditor(QString text);
     bool isChecked_themeChanger();
+    QString get_text_codeEditor();
 
 private:
     Ui::MainWindow *ui;

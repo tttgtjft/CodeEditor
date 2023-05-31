@@ -15,6 +15,9 @@ signals:
 
 private slots:
     void on_radioButton_clicked();
+
+private:
+    QPalette m_darkPalette;
 };
 
 #endif // THEMECHANGER_H

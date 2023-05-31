@@ -1,6 +1,8 @@
 #include "FileSystem.h"
 
 #include <QCoreApplication>
+#include <QInputDialog>
+#include <QMessageBox>
 #include <QDebug>
 
 FileSystem::FileSystem(QWidget* parent) : QListView(parent)
@@ -23,9 +25,9 @@ FileSystem::FileSystem(QWidget* parent) : QListView(parent)
 
 void FileSystem::on_listView_clicked(const QModelIndex &index)
 {
-    QFileInfo fileInfo = m_model->fileInfo(index);
-    QFile file(fileInfo.absoluteFilePath());
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text))
+    m_fileInfo = m_model->fileInfo(index);
+    QFile file(m_fileInfo.absoluteFilePath());
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "File can not be openned";
     }
@@ -36,4 +38,40 @@ void FileSystem::on_listView_clicked(const QModelIndex &index)
     file.close();
 }
 
+void FileSystem::on_newFile_clicked()
+{
+    QInputDialog* inputDialog = new QInputDialog();
+    inputDialog->setInputMode(QInputDialog::TextInput);
+    inputDialog->setWindowTitle("New File");
+    inputDialog->setLabelText("Name of the new file:");
+    inputDialog->setOkButtonText("Add");
+    inputDialog->exec();
 
+    QString text = inputDialog->textValue();
+    QFile file(QDir::currentPath() + "/Project/" + text);
+    if (file.exists() && !text.isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "The file with this name already exists");
+    }
+    else if (!file.open(QIODevice::WriteOnly))
+    {
+        qDebug() << "File can not be created";
+    }
+
+    file.close();
+}
+
+void FileSystem::on_saveFile_clicked()
+{
+    QFile file(m_fileInfo.absoluteFilePath());
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "File can not be openned";
+    }
+
+    QTextStream out(&file);
+    out << emit get_text();
+    qDebug() << emit get_text();
+
+    file.close();
+}
